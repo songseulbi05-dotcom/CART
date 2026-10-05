@@ -1,60 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Cart - 상품 비교</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body data-page="compare">
-<div class="page">
-
-  <div class="topbar">
-    <div class="topbar-left">
-      <button class="back-btn" onclick="history.back()" aria-label="뒤로가기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <div class="title-group">
-        <h1>상품 비교</h1>
-        <p data-tts-sub>선택한 상품을 비교해보고 원하는 상품을 선택하세요.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Cart - 상품 비교</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="compare">
+    <div class="page">
+      <div class="topbar">
+        <div class="topbar-left">
+          <button
+            class="back-btn"
+            onclick="history.back()"
+            aria-label="뒤로가기"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <div class="title-group">
+            <h1>상품 비교</h1>
+            <p data-tts-sub>
+              선택한 상품을 비교해보고 원하는 상품을 선택하세요.
+            </p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="pill-btn font-toggle-btn">가+ 글자 크게</button>
+          <button class="icon-btn tts-btn" aria-label="읽어주기">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path
+                d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
+
+      <div id="compareContent"></div>
     </div>
-    <div class="topbar-actions">
-      <button class="pill-btn font-toggle-btn">가+ 글자 크게</button>
-      <button class="icon-btn tts-btn" aria-label="읽어주기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-      </button>
-    </div>
-  </div>
 
-  <div id="compareContent"></div>
+    <nav class="bottom-nav">
+      <a class="nav-btn" href="index.html">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        </svg>
+        홈
+      </a>
+      <a class="nav-btn" href="checklist.html">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="8" y1="6" x2="21" y2="6" />
+          <line x1="8" y1="12" x2="21" y2="12" />
+          <line x1="8" y1="18" x2="21" y2="18" />
+          <line x1="3" y1="6" x2="3.01" y2="6" />
+          <line x1="3" y1="12" x2="3.01" y2="12" />
+          <line x1="3" y1="18" x2="3.01" y2="18" />
+        </svg>
+        리스트
+      </a>
+    </nav>
 
-</div>
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      let ids = (params.get("ids") || "").split(",").filter(Boolean);
+      if (ids.length < 2) ids = getCompareSelection();
 
-<nav class="bottom-nav">
-  <a class="nav-btn" href="index.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    홈
-  </a>
-  <a class="nav-btn" href="checklist.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-    리스트
-  </a>
-</nav>
+      const products = ids.map(getProduct).filter(Boolean);
+      const content = document.getElementById("compareContent");
 
-<script src="js/data.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/common.js"></script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  let ids = (params.get('ids') || '').split(',').filter(Boolean);
-  if (ids.length < 2) ids = getCompareSelection();
-
-  const products = ids.map(getProduct).filter(Boolean);
-  const content = document.getElementById('compareContent');
-
-  if (products.length < 2) {
-    content.innerHTML = `
+      if (products.length < 2) {
+        content.innerHTML = `
       <div class="empty-state">
         <div class="e-emoji">✨</div>
         <p>비교할 상품을 2개 선택해주세요.</p>
@@ -62,13 +110,14 @@
         <a class="pill-btn active" href="result.html" style="display:inline-flex;">상품 찾으러 가기</a>
       </div>
     `;
-  } else {
-    let selectedId = products[0].id;
+      } else {
+        let selectedId = products[0].id;
 
-    function nutriPills(p) {
-      if (!p.nutrition) return '<span style="color:var(--text-sub);font-size:.8rem;">영양 정보 없음</span>';
-      const n = p.nutrition;
-      return `
+        function nutriPills(p) {
+          if (!p.nutrition)
+            return '<span style="color:var(--text-sub);font-size:.8rem;">영양 정보 없음</span>';
+          const n = p.nutrition;
+          return `
         <div class="nutri-pills">
           <div class="nutri-pill">${n.cal}<small>칼로리</small></div>
           <div class="nutri-pill">${n.carb}g<small>탄수화물</small></div>
@@ -77,37 +126,56 @@
           <div class="nutri-pill">${n.protein}g<small>단백질</small></div>
         </div>
       `;
-    }
+        }
 
-    function renderTable() {
-      const rows = [
-        { label: '', render: (p) => `
+        function renderTable() {
+          const rows = [
+            {
+              label: "",
+              render: (p) => `
           <div class="select-badge">
-            <span class="dot">${p.id === selectedId ? '✓' : ''}</span>
-            ${p.id === selectedId ? '선택됨' : '선택하기'}
+            <span class="dot">${p.id === selectedId ? "✓" : ""}</span>
+            ${p.id === selectedId ? "선택됨" : "선택하기"}
           </div>
           <div class="compare-thumb">${p.emoji}</div>
           <h4>${p.name}</h4>
-        `, headerRow: true },
-        { label: '용량', render: (p) => p.volume },
-        { label: '가격', render: (p) => `<strong>${formatPrice(p.price)}</strong>` },
-        { label: '원산지', render: (p) => p.origin },
-        { label: '영양 정보 (100g 기준)', render: (p) => nutriPills(p) },
-        { label: '고객 평점', render: (p) => `★ ${p.rating} (${p.reviews.toLocaleString('ko-KR')})` },
-      ];
+        `,
+              headerRow: true,
+            },
+            { label: "용량", render: (p) => p.volume },
+            {
+              label: "가격",
+              render: (p) => `<strong>${formatPrice(p.price)}</strong>`,
+            },
+            { label: "원산지", render: (p) => p.origin },
+            { label: "영양 정보 (100g 기준)", render: (p) => nutriPills(p) },
+            {
+              label: "고객 평점",
+              render: (p) =>
+                `★ ${p.rating} (${p.reviews.toLocaleString("ko-KR")})`,
+            },
+          ];
 
-      content.innerHTML = `
+          content.innerHTML = `
         <div class="compare-table-wrap">
           <div class="compare-grid">
-            ${rows.map((row) => `
+            ${rows
+              .map(
+                (row) => `
               <div class="compare-row-label">${row.label}</div>
-              ${products.map((p) => `
-                <div class="compare-cell ${row.headerRow ? 'header-cell' : ''} ${p.id === selectedId ? 'selected' : ''}"
-                     data-select-id="${p.id}" style="${row.headerRow ? 'cursor:pointer;' : ''}">
+              ${products
+                .map(
+                  (p) => `
+                <div class="compare-cell ${row.headerRow ? "header-cell" : ""} ${p.id === selectedId ? "selected" : ""}"
+                     data-select-id="${p.id}" style="${row.headerRow ? "cursor:pointer;" : ""}">
                   ${row.render(p)}
                 </div>
-              `).join('')}
-            `).join('')}
+              `,
+                )
+                .join("")}
+            `,
+              )
+              .join("")}
           </div>
         </div>
         <div class="compare-actions">
@@ -116,26 +184,28 @@
         </div>
       `;
 
-      content.querySelectorAll('[data-select-id]').forEach((cell) => {
-        cell.addEventListener('click', () => {
-          selectedId = cell.dataset.selectId;
-          renderTable();
-        });
-      });
+          content.querySelectorAll("[data-select-id]").forEach((cell) => {
+            cell.addEventListener("click", () => {
+              selectedId = cell.dataset.selectId;
+              renderTable();
+            });
+          });
 
-      document.getElementById('locateBtn').addEventListener('click', () => {
-        window.location.href = 'store.html?id=' + selectedId;
-      });
-      document.getElementById('addCartBtn').addEventListener('click', () => {
-        addToCart(selectedId, 1);
-        clearCompareSelection();
-        alert('장바구니에 담았어요!');
-        window.location.href = 'cart.html';
-      });
-    }
+          document.getElementById("locateBtn").addEventListener("click", () => {
+            window.location.href = "store.html?id=" + selectedId;
+          });
+          document
+            .getElementById("addCartBtn")
+            .addEventListener("click", () => {
+              addToCart(selectedId, 1);
+              clearCompareSelection();
+              alert("장바구니에 담았어요!");
+              window.location.href = "cart.html";
+            });
+        }
 
-    renderTable();
-  }
-</script>
-</body>
+        renderTable();
+      }
+    </script>
+  </body>
 </html>

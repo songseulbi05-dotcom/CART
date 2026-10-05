@@ -1,188 +1,255 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Cart - 상품 검색 결과</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body data-page="result">
-<div class="page">
-
-  <div class="topbar">
-    <div class="topbar-left">
-      <button class="back-btn" onclick="history.back()" aria-label="뒤로가기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <div class="title-group">
-        <h1>상품 검색 결과</h1>
-        <p id="resultSub" data-tts-sub>검색 결과예요.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Cart - 상품 검색 결과</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="result">
+    <div class="page">
+      <div class="topbar">
+        <div class="topbar-left">
+          <button
+            class="back-btn"
+            onclick="history.back()"
+            aria-label="뒤로가기"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <div class="title-group">
+            <h1>상품 검색 결과</h1>
+            <p id="resultSub" data-tts-sub>검색 결과예요.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="pill-btn font-toggle-btn">가+ 글자 크게</button>
+          <button class="icon-btn tts-btn" aria-label="읽어주기">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path
+                d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
+
+      <form class="card search-box" id="searchForm" style="margin-bottom: 18px">
+        <svg
+          class="search-ic"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="찾는 상품을 입력하세요."
+          autocomplete="off"
+        />
+        <button type="button" class="clear-btn" id="clearInputBtn">✕</button>
+      </form>
+
+      <div class="result-head">
+        <div class="result-count"><span id="resultCount">0</span>개 상품</div>
+        <div class="sort-row">
+          <select class="sort-select" id="sortSelect">
+            <option value="reco">추천순</option>
+            <option value="price-asc">낮은 가격순</option>
+            <option value="price-desc">높은 가격순</option>
+            <option value="rating">평점순</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
     </div>
-    <div class="topbar-actions">
-      <button class="pill-btn font-toggle-btn">가+ 글자 크게</button>
-      <button class="icon-btn tts-btn" aria-label="읽어주기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-      </button>
+
+    <div class="compare-bar" id="compareBar">
+      <span id="compareBarText">0개 선택됨</span>
+      <button id="compareGoBtn">비교하기</button>
     </div>
-  </div>
 
-  <form class="card search-box" id="searchForm" style="margin-bottom:18px;">
-    <svg class="search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" id="searchInput" placeholder="찾는 상품을 입력하세요." autocomplete="off">
-    <button type="button" class="clear-btn" id="clearInputBtn">✕</button>
-  </form>
+    <nav class="bottom-nav">
+      <a class="nav-btn" href="index.html">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        </svg>
+        홈
+      </a>
+      <a class="nav-btn" href="checklist.html">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="8" y1="6" x2="21" y2="6" />
+          <line x1="8" y1="12" x2="21" y2="12" />
+          <line x1="8" y1="18" x2="21" y2="18" />
+          <line x1="3" y1="6" x2="3.01" y2="6" />
+          <line x1="3" y1="12" x2="3.01" y2="12" />
+          <line x1="3" y1="18" x2="3.01" y2="18" />
+        </svg>
+        리스트
+      </a>
+    </nav>
 
-  <div class="result-head">
-    <div class="result-count"><span id="resultCount">0</span>개 상품</div>
-    <div class="sort-row">
-      <select class="sort-select" id="sortSelect">
-        <option value="reco">추천순</option>
-        <option value="price-asc">낮은 가격순</option>
-        <option value="price-desc">높은 가격순</option>
-        <option value="rating">평점순</option>
-      </select>
-    </div>
-  </div>
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const qParam = params.get("q") || "";
+      const catParam = params.get("cat") || "";
 
-  <div class="product-grid" id="productGrid"></div>
+      document.getElementById("searchInput").value = qParam;
 
-</div>
+      function getResults() {
+        if (qParam) return searchProducts(qParam);
+        if (catParam && catParam !== "all")
+          return PRODUCTS.filter((p) => p.category === catParam);
+        return PRODUCTS.slice();
+      }
 
-<div class="compare-bar" id="compareBar">
-  <span id="compareBarText">0개 선택됨</span>
-  <button id="compareGoBtn">비교하기</button>
-</div>
+      function sortResults(list, mode) {
+        const arr = list.slice();
+        if (mode === "price-asc") arr.sort((a, b) => a.price - b.price);
+        else if (mode === "price-desc") arr.sort((a, b) => b.price - a.price);
+        else if (mode === "rating") arr.sort((a, b) => b.rating - a.rating);
+        return arr;
+      }
 
-<nav class="bottom-nav">
-  <a class="nav-btn" href="index.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    홈
-  </a>
-  <a class="nav-btn" href="checklist.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-    리스트
-  </a>
-</nav>
+      function render() {
+        const mode = document.getElementById("sortSelect").value;
+        const list = sortResults(getResults(), mode);
+        const grid = document.getElementById("productGrid");
+        const sub = document.getElementById("resultSub");
+        const count = document.getElementById("resultCount");
 
-<script src="js/data.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/common.js"></script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const qParam = params.get('q') || '';
-  const catParam = params.get('cat') || '';
+        sub.textContent = qParam
+          ? `"${qParam}"에 대한 검색 결과예요.`
+          : catParam && catParam !== "all"
+            ? `${(CATEGORIES.find((c) => c.id === catParam) || {}).name || ""} 상품 결과예요.`
+            : "전체 상품 결과예요.";
+        count.textContent = list.length;
 
-  document.getElementById('searchInput').value = qParam;
+        grid.innerHTML = "";
+        if (list.length === 0) {
+          grid.innerHTML =
+            '<div class="empty-state" style="grid-column:1/-1;"><div class="e-emoji">🔎</div><p>검색 결과가 없어요. 다른 검색어로 시도해보세요.</p></div>';
+          return;
+        }
 
-  function getResults() {
-    if (qParam) return searchProducts(qParam);
-    if (catParam && catParam !== 'all') return PRODUCTS.filter((p) => p.category === catParam);
-    return PRODUCTS.slice();
-  }
+        const compareSel = getCompareSelection();
 
-  function sortResults(list, mode) {
-    const arr = list.slice();
-    if (mode === 'price-asc') arr.sort((a, b) => a.price - b.price);
-    else if (mode === 'price-desc') arr.sort((a, b) => b.price - a.price);
-    else if (mode === 'rating') arr.sort((a, b) => b.rating - a.rating);
-    return arr;
-  }
-
-  function render() {
-    const mode = document.getElementById('sortSelect').value;
-    const list = sortResults(getResults(), mode);
-    const grid = document.getElementById('productGrid');
-    const sub = document.getElementById('resultSub');
-    const count = document.getElementById('resultCount');
-
-    sub.textContent = qParam ? `"${qParam}"에 대한 검색 결과예요.` :
-      (catParam && catParam !== 'all') ? `${(CATEGORIES.find(c=>c.id===catParam)||{}).name || ''} 상품 결과예요.` :
-      '전체 상품 결과예요.';
-    count.textContent = list.length;
-
-    grid.innerHTML = '';
-    if (list.length === 0) {
-      grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="e-emoji">🔎</div><p>검색 결과가 없어요. 다른 검색어로 시도해보세요.</p></div>';
-      return;
-    }
-
-    const compareSel = getCompareSelection();
-
-    list.forEach((p) => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      const inCart = isInCart(p.id);
-      const compared = compareSel.includes(p.id);
-      card.innerHTML = `
+        list.forEach((p) => {
+          const card = document.createElement("div");
+          card.className = "product-card";
+          const inCart = isInCart(p.id);
+          const compared = compareSel.includes(p.id);
+          card.innerHTML = `
         <div class="product-thumb">${p.emoji}</div>
         <h4>${p.name}</h4>
         <div class="product-meta">${p.volume}</div>
         <div class="product-price">${formatPrice(p.price)}</div>
-        <div class="product-rating">★ ${p.rating} (${p.reviews.toLocaleString('ko-KR')})</div>
+        <div class="product-rating">★ ${p.rating} (${p.reviews.toLocaleString("ko-KR")})</div>
         <div class="product-actions">
-          <button class="cart-btn ${inCart ? 'in-cart' : ''}" data-id="${p.id}">
+          <button class="cart-btn ${inCart ? "in-cart" : ""}" data-id="${p.id}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-            ${inCart ? '담김' : '장바구니'}
+            ${inCart ? "담김" : "장바구니"}
           </button>
-          <button class="compare-btn ${compared ? 'selected' : ''}" data-id="${p.id}">비교해보기</button>
+          <button class="compare-btn ${compared ? "selected" : ""}" data-id="${p.id}">비교해보기</button>
         </div>
       `;
-      grid.appendChild(card);
-    });
+          grid.appendChild(card);
+        });
 
-    grid.querySelectorAll('.cart-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.id;
-        if (isInCart(id)) {
-          window.location.href = 'cart.html';
-        } else {
-          addToCart(id, 1);
-          render();
+        grid.querySelectorAll(".cart-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.dataset.id;
+            if (isInCart(id)) {
+              window.location.href = "cart.html";
+            } else {
+              addToCart(id, 1);
+              render();
+            }
+          });
+        });
+
+        grid.querySelectorAll(".compare-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            toggleCompareSelection(btn.dataset.id);
+            render();
+            updateCompareBar();
+          });
+        });
+      }
+
+      function updateCompareBar() {
+        const sel = getCompareSelection();
+        const bar = document.getElementById("compareBar");
+        document.getElementById("compareBarText").textContent =
+          `${sel.length}개 선택됨 (최대 2개)`;
+        bar.classList.toggle("show", sel.length > 0);
+      }
+
+      document.getElementById("compareGoBtn").addEventListener("click", () => {
+        const sel = getCompareSelection();
+        if (sel.length < 2) {
+          alert("비교할 상품을 2개 선택해주세요.");
+          return;
         }
+        window.location.href = "compare.html?ids=" + sel.join(",");
       });
-    });
 
-    grid.querySelectorAll('.compare-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        toggleCompareSelection(btn.dataset.id);
-        render();
-        updateCompareBar();
+      document.getElementById("sortSelect").addEventListener("change", render);
+      document.getElementById("clearInputBtn").addEventListener("click", () => {
+        window.location.href = "result.html";
       });
-    });
-  }
+      document.getElementById("searchForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const val = document.getElementById("searchInput").value.trim();
+        if (!val) return;
+        addRecentSearch(val);
+        window.location.href = "result.html?q=" + encodeURIComponent(val);
+      });
 
-  function updateCompareBar() {
-    const sel = getCompareSelection();
-    const bar = document.getElementById('compareBar');
-    document.getElementById('compareBarText').textContent = `${sel.length}개 선택됨 (최대 2개)`;
-    bar.classList.toggle('show', sel.length > 0);
-  }
-
-  document.getElementById('compareGoBtn').addEventListener('click', () => {
-    const sel = getCompareSelection();
-    if (sel.length < 2) {
-      alert('비교할 상품을 2개 선택해주세요.');
-      return;
-    }
-    window.location.href = 'compare.html?ids=' + sel.join(',');
-  });
-
-  document.getElementById('sortSelect').addEventListener('change', render);
-  document.getElementById('clearInputBtn').addEventListener('click', () => {
-    window.location.href = 'result.html';
-  });
-  document.getElementById('searchForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const val = document.getElementById('searchInput').value.trim();
-    if (!val) return;
-    addRecentSearch(val);
-    window.location.href = 'result.html?q=' + encodeURIComponent(val);
-  });
-
-  if (qParam) addRecentSearch(qParam);
-  render();
-  updateCompareBar();
-</script>
-</body>
+      if (qParam) addRecentSearch(qParam);
+      render();
+      updateCompareBar();
+    </script>
+  </body>
 </html>
