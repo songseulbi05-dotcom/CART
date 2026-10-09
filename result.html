@@ -115,7 +115,7 @@
       const inCart = isInCart(p.id);
       const compared = compareSel.includes(p.id);
       card.innerHTML = `
-        <div class="product-thumb">${p.emoji}</div>
+        <div class="product-thumb">${productThumb(p)}</div>
         <h4>${p.name}</h4>
         <div class="product-meta">${p.volume}</div>
         <div class="product-price">${formatPrice(p.price)}</div>

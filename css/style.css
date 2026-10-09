@@ -410,6 +410,20 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: center;
   font-size: 2.6rem;
 }
+.product-thumb .p-icon,
+.s-thumb .p-icon,
+.compare-thumb .p-icon {
+  width: 68%;
+  height: 68%;
+}
+.product-thumb .p-photo,
+.s-thumb .p-photo,
+.compare-thumb .p-photo {
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  border-radius: calc(var(--radius-sm) - 4px);
+}
 .product-card h4 { margin: 0; font-size: 0.95rem; font-weight: 800; }
 .product-meta { font-size: 0.78rem; color: var(--text-sub); }
 .product-price { font-size: 1.05rem; font-weight: 900; }

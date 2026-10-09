@@ -86,7 +86,7 @@
             <span class="dot">${p.id === selectedId ? '✓' : ''}</span>
             ${p.id === selectedId ? '선택됨' : '선택하기'}
           </div>
-          <div class="compare-thumb">${p.emoji}</div>
+          <div class="compare-thumb">${productThumb(p)}</div>
           <h4>${p.name}</h4>
         `, headerRow: true },
         { label: '용량', render: (p) => p.volume },

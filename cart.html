@@ -87,7 +87,7 @@
       const item = document.createElement('div');
       item.className = 'card cart-item';
       item.innerHTML = `
-        <div class="product-thumb">${p.emoji}</div>
+        <div class="product-thumb">${productThumb(p)}</div>
         <div class="ci-info">
           <h4>${p.name}</h4>
           <div class="ci-meta">${p.volume}</div>
@@ -108,7 +108,7 @@
       const line = document.createElement('div');
       line.className = 'summary-line';
       line.innerHTML = `
-        <div class="s-thumb">${p.emoji}</div>
+        <div class="s-thumb">${productThumb(p)}</div>
         <span class="s-name">${p.name} ${p.volume} × ${c.qty}</span>
         <span class="s-price">${formatPrice(p.price * c.qty)}</span>
       `;

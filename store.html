@@ -84,7 +84,7 @@
   let currentFloor = product.location.floor;
 
   document.getElementById('productCard').innerHTML = `
-    <div class="product-thumb">${product.emoji}</div>
+    <div class="product-thumb">${productThumb(product)}</div>
     <div>
       <h4>${product.name}</h4>
       <div class="product-meta">${product.volume}</div>
