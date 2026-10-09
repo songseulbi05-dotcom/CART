@@ -1,11 +1,13 @@
 // 상품 데이터베이스 (목업)
 const CATEGORIES = [
-  { id: 'veg', name: '채소·과일', emoji: '🥦' },
-  { id: 'meat', name: '육류·수산', emoji: '🐟' },
-  { id: 'dairy', name: '유제품', emoji: '🥛' },
-  { id: 'processed', name: '가공식품', emoji: '🥫' },
-  { id: 'drink', name: '음료·간식', emoji: '🍪' },
-  { id: 'life', name: '생활용품', emoji: '🧴' },
+  { id: 'veg', name: '채소·과일', color: 'veg' },
+  { id: 'meat', name: '육류·수산', color: 'meat' },
+  { id: 'dairy', name: '유제품', color: 'dairy' },
+  { id: 'health', name: '건강식품', color: 'health' },
+  { id: 'processed', name: '가공식품', color: 'processed' },
+  { id: 'drink', name: '음료·간식', color: 'drink' },
+  { id: 'life', name: '생활용품', color: 'life' },
+  { id: 'etc', name: '기타', color: 'etc' },
 ];
 
 const PRODUCTS = [

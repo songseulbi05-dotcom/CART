@@ -299,15 +299,15 @@ button { font-family: inherit; cursor: pointer; }
 
 .cat-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
   margin-bottom: 28px;
 }
 .cat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
+  position: relative;
+  border: none;
   border-radius: var(--radius-md);
-  padding: 16px 8px 14px;
+  padding: 18px 10px 14px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -315,8 +315,33 @@ button { font-family: inherit; cursor: pointer; }
   gap: 8px;
   width: 100%;
 }
-.cat-card .c-emoji { font-size: 1.8rem; }
+.cat-card .c-icon { width: 48px; height: 48px; }
+.cat-card .c-icon svg { width: 100%; height: 100%; }
 .cat-card .c-name { font-size: 0.85rem; font-weight: 700; }
+.cat-card .c-chevron {
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.cat-card .c-chevron svg { width: 14px; height: 14px; }
+
+.cat-card--veg { background: #e3f3df; }
+.cat-card--meat { background: #fadedc; }
+.cat-card--dairy { background: #dceefa; }
+.cat-card--health { background: #fce4e8; }
+.cat-card--processed { background: #eaf3dc; }
+.cat-card--drink { background: #fdefd9; }
+.cat-card--life { background: #ede3f7; }
+.cat-card--etc { background: #f3e9dc; }
 
 .recent-row {
   display: grid;
@@ -684,7 +709,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .menu-grid { grid-template-columns: repeat(2, 1fr); }
-  .cat-grid { grid-template-columns: repeat(3, 1fr); }
+  .cat-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .store-layout, .cart-layout, .checklist-layout { grid-template-columns: 1fr; }
   .compare-grid { grid-template-columns: 90px repeat(2, 1fr); }
