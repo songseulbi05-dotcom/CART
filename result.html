@@ -67,6 +67,7 @@
         <input
           type="text"
           id="searchInput"
+          aria-label="상품 검색어"
           placeholder="찾는 상품을 입력하세요."
           autocomplete="off"
         />
@@ -76,7 +77,11 @@
       <div class="result-head">
         <div class="result-count"><span id="resultCount">0</span>개 상품</div>
         <div class="sort-row">
-          <select class="sort-select" id="sortSelect">
+          <select
+            class="sort-select"
+            id="sortSelect"
+            aria-label="상품 정렬 기준"
+          >
             <option value="reco">추천순</option>
             <option value="price-asc">낮은 가격순</option>
             <option value="price-desc">높은 가격순</option>
@@ -204,7 +209,8 @@
               window.location.href = "cart.html";
             } else {
               addToCart(id, 1);
-              render();
+              btn.classList.add("in-cart");
+              btn.lastChild.textContent = " 담김";
             }
           });
         });
@@ -212,7 +218,13 @@
         grid.querySelectorAll(".compare-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
             toggleCompareSelection(btn.dataset.id);
-            render();
+            const selection = getCompareSelection();
+            grid.querySelectorAll(".compare-btn").forEach((compareBtn) => {
+              compareBtn.classList.toggle(
+                "selected",
+                selection.includes(compareBtn.dataset.id),
+              );
+            });
             updateCompareBar();
           });
         });
